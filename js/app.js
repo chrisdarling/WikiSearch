@@ -5,7 +5,7 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: 'views/results.html'
 	});
 
-	$locationProvider.html5Mode(true);
+	
 });
 
 
