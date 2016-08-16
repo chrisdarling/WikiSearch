@@ -1,0 +1,9 @@
+<h4 id="result-title" ng-hide="" style="color: #fff">Search Results For: <span id="">"{{search}}"</span></h4>
+<div  ng-repeat="result in results">
+	<a class="searchLink" href="{{result.link}}">
+		<div class="searchResult">
+			<h3>{{result.title}}</h3>
+			<p>{{result.info}}</p>
+		</div>
+	</a>
+</div>
