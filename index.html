@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/wiki.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
 
     
@@ -22,25 +23,22 @@
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2  col-md-6 col-md-offset-3">
 			
 			
-					<a class="home" href="/"><img class="img-responsive" src="images/wiki.png"></a>
+					<a class="home" href="/WikiSearch"><img class="img-responsive" src="images/wiki.png"></a>
 				
 			<h2 style="color: #fff">Wikipedia Search</h2>
 			<div ng-controller="wikiCtrl">
-			<form ng-valid ng-submit="searchWiki(inputSearch)">
+			
 				<div class="btn-group">
-					<input id="searchinput" type="text" ng-model="inputSearch" class="form-control" required minlength="2" placeholder="Search Wikipedia Article">
+					<input id="searchinput" type="text" ng-model="inputSearch" class="form-control" required minlength="2" placeholder="Search Wikipedia Article" ng-change="searchWiki(inputSearch)">
 					<span ng-hide="showClear(inputSearch)" id="searchclear" class="glyphicon glyphicon-remove-circle" ng-click="clearSearch()"></span>	
 
 					
 					
 				</div>
+			<!---- Search results included here ---->
+			<div ng-hide="showresults" ng-include="'views/results.html'"></div>
 
-
-			</form>
-			
-			<div ng-view>
-				
-			</div>
+			<div id="about"><p>Created with the <a href="https://www.mediawiki.org/wiki/API:Opensearch">Opensearch</a> Wikipedia search api</p></div>
 
 		</div>
 		</div>

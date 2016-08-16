@@ -1,12 +1,5 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', []);
 
-app.config(function($routeProvider, $locationProvider) {
-	$routeProvider.when('/views', {
-		templateUrl: 'views/results.html'
-	});
-
-	
-});
 
 
 app.controller('wikiCtrl', function($scope, $http, $location) {
@@ -15,6 +8,8 @@ app.controller('wikiCtrl', function($scope, $http, $location) {
 	
 
 	$scope.results = [];
+
+	$scope.showresults = true;
 
 	
 	
@@ -29,6 +24,19 @@ app.controller('wikiCtrl', function($scope, $http, $location) {
     	}
     	
 	};
+
+	function showResults() {
+		if (($scope.inputSearch === undefined) || ($scope.inputSearch === null)) {
+			$scope.showresults = true;
+			
+			// hide
+		} else {
+			$scope.showresults = false;
+			
+			//show
+		}
+
+	}
 
 	$scope.showClear = function() {
 		if (!($scope.inputSearch === undefined)) {
@@ -50,12 +58,14 @@ app.controller('wikiCtrl', function($scope, $http, $location) {
 
 	$scope.clearSearch = function() {
 		$scope.inputSearch = "";
-		$location.path('/');
+		$scope.showresults = true;
+		//hide
 	}
 
 
    $scope.searchWiki = function(input) {
 
+   		showResults();
    		
    		$scope.search = trimSearch(input);
 
@@ -68,7 +78,7 @@ app.controller('wikiCtrl', function($scope, $http, $location) {
 					
 
 					if (data[1].length >= 1)  {
-						console.log(data);
+						
 						$scope.results = [];
 					
 						var dataObj = {
@@ -92,14 +102,14 @@ app.controller('wikiCtrl', function($scope, $http, $location) {
 
 					} else {
 						$scope.results = [];
-						console.log("no results");
+						
 					}
 
 					
 			});
 
 			
-			$location.path('/views');
+			
 
 
 		} else {
